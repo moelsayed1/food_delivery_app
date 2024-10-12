@@ -9,7 +9,7 @@ class AppTheme {
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.deepPurple, // Customize your dark theme colors
+    primaryColor: const Color(0xffF34A23), // Customize your dark theme colors
     // ...other dark theme properties
   );
 }
