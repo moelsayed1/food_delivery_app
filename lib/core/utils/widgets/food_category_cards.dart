@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FoodCategoryCards extends StatelessWidget {
-  const FoodCategoryCards({super.key, required this.image, required this.label});
+class FoodCategoryCard extends StatelessWidget {
+  const FoodCategoryCard({super.key, required this.image, required this.label});
 
   final String image;
   final String label;
@@ -28,8 +28,9 @@ class FoodCategoryCards extends StatelessWidget {
           child: Center(
             child: Image.asset(
               image,
-              height: 30,
-              width: 30,
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
             ),
           ),
         ),
