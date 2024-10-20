@@ -106,7 +106,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     height: 55,
                     width: 200,
                     child: CustomElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRouter.homeRoute);
+                      },
                       child: const Text(
                         'Login',
                         style: TextStyle(
