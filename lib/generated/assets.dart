@@ -5,13 +5,13 @@ class Assets {
   static const String fontsGTSectraFineRegular = 'assets/fonts/GT-Sectra-Fine-Regular.ttf';
   static const String imagesAnimationDeliveryLogo = 'assets/images/Animation delivery logo.json';
   static const String imagesAnimationMail = 'assets/images/Animation mail.gif';
-  static const String imagesBackgroundImage = 'assets/images/background image.webp';
+  static const String imagesBackground = 'assets/images/background image.webp';
   static const String imagesBackgroundASplash = 'assets/images/background splash 2(1)(1).jpg';
   static const String imagesEmail = 'assets/images/email.webp';
-  static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesLogoFacebook = 'assets/images/facebook.png';
   static const String imagesFoodLogo = 'assets/images/food logo.png';
   static const String imagesForgetPassword = 'assets/images/forget_password.webp';
-  static const String imagesGoogle = 'assets/images/google.png';
+  static const String imagesLogoGoogle = 'assets/images/google.png';
   static const String imagesLandingPage = 'assets/images/Landing Page.jpg';
   static const String imagesLogoAppTransparent = 'assets/images/logo_app_transparent.png';
   static const String imagesLogoTransparent = 'assets/images/logo_transparent.png';

@@ -37,7 +37,7 @@ class _OtpViewBodyState extends State<OtpViewBody> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage(
-                        Assets.imagesMail,
+                        Assets.imagesEmail,
                       ),
                       fit: BoxFit.cover,
                     ),
