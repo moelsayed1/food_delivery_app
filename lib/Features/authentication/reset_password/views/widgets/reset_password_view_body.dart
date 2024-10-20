@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
 import 'package:food_delivery_app/core/utils/custom_elevated_button/custom_elevated_button.dart';
 import 'package:food_delivery_app/core/utils/custom_text_field/custom_text_field.dart';
+import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/generated/assets.dart';
 
 class ResetPasswordViewBody extends StatefulWidget {
@@ -12,6 +13,7 @@ class ResetPasswordViewBody extends StatefulWidget {
 }
 
 class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
+
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -43,8 +45,8 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
                 ),
                 const SizedBox(height: 30.0),
                 ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
+                  title: const Padding(
+                    padding: EdgeInsets.only(bottom: 12),
                     child: Text(
                       'Reset your password',
                       textAlign: TextAlign.center,
@@ -75,8 +77,10 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
                   height: 60,
                   width: 200,
                   child: CustomElevatedButton(
-                    onPressed: () {},
-                    child: Text(
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRouter.resetSuccessRoute);
+                    },
+                    child: const Text(
                       'Reset Password',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
