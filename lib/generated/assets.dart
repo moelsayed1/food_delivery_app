@@ -11,6 +11,7 @@ class Assets {
   static const String imagesLogoFacebook = 'assets/images/facebook.png';
   static const String imagesFoodLogo = 'assets/images/food logo.png';
   static const String imagesForgetPassword = 'assets/images/forget_password.webp';
+  static const String imagesResetPassword = 'assets/images/reset password.webp';
   static const String imagesLogoGoogle = 'assets/images/google.png';
   static const String imagesLandingPage = 'assets/images/Landing Page.jpg';
   static const String imagesLogoAppTransparent = 'assets/images/logo_app_transparent.png';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/Features/authentication/forget/views/forget_password_view.dart';
 import 'package:food_delivery_app/Features/authentication/login/views/login_view.dart';
 import 'package:food_delivery_app/Features/authentication/otp/views/otp_view.dart';
+import 'package:food_delivery_app/Features/authentication/reset_password/views/reset_password_view.dart';
 import 'package:food_delivery_app/Features/authentication/sign_up/views/sign_up_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/home_view.dart';
 import 'package:food_delivery_app/Features/splash/presentation/views/splash_view.dart';
@@ -12,6 +13,7 @@ class AppRouter {
   static const String signupRoute = '/signup';
   static const String forgetRoute = '/forget';
   static const String otpRoute = '/otp';
+  static const String resetRoute = '/reset';
   static const String homeRoute = '/home';
 
 
@@ -27,6 +29,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>  const ForgetPasswordView());
       case otpRoute:
         return MaterialPageRoute(builder: (_) =>  const OtpView());
+      case resetRoute:
+        return MaterialPageRoute(builder: (_) =>  const ResetPasswordView());
       case homeRoute:
         return MaterialPageRoute(builder: (_) =>  const HomeView());
 

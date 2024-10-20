@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
 import 'package:food_delivery_app/core/utils/custom_elevated_button/custom_elevated_button.dart';
+import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/core/utils/themes/app_theme.dart';
 import 'package:food_delivery_app/generated/assets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -69,7 +70,7 @@ class _OtpViewBodyState extends State<OtpViewBody> {
                 ),
                 PinCodeTextField(
                   appContext: context,
-                  length: 6,
+                  length: 4,
                   controller: otpController,
                   keyboardType: TextInputType.number,
                   pinTheme: PinTheme(
@@ -121,7 +122,9 @@ class _OtpViewBodyState extends State<OtpViewBody> {
                   height: 60,
                   width: 200,
                   child: CustomElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRouter.resetRoute);
+                    },
                     child: const Text(
                       'Verify OTP',
                       style: TextStyle(fontSize: 18, color: Colors.white),
