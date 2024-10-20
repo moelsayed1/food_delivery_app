@@ -2,8 +2,16 @@
 class Assets {
   Assets._();
 
+  static const String fontsGTSectraFineRegular = 'assets/fonts/GT-Sectra-Fine-Regular.ttf';
+  static const String imagesAnimationDeliveryLogo = 'assets/images/Animation delivery logo.json';
+  static const String imagesBackgroundSplash= 'assets/images/background splash 2(1)(1).jpg';
+  static const String imagesBackground= 'assets/images/background image.webp';
+  static const String imagesForgetPassword= 'assets/images/forget_password.webp';
+  static const String imagesMail= 'assets/images/Animation mail.gif';
+  static const String imagesFoodLogo = 'assets/images/food logo.png';
   static const String imagesLogoAppTransparent = 'assets/images/logo_app_transparent.png';
   static const String imagesLogoTransparent = 'assets/images/logo_transparent.png';
-  static const String imagesRedModernBurgerIOSHomeScreen  = 'assets/images/Red Modern Burger iOS Home Screen .png';
+  static const String imagesLogoFacebook = 'assets/images/facebook.png';
+  static const String imagesLogoGoogle = 'assets/images/google.png';
 
 }
