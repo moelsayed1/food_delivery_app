@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppBarIcons extends StatelessWidget {
   const AppBarIcons({
-    super.key,
+    super.key, this.title,
   });
+
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,14 @@ class AppBarIcons extends StatelessWidget {
             icon: const Icon(
               Icons.arrow_back_ios,
             ),
+          ),
+        ),
+        Text(
+          title ?? '',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
         Material(

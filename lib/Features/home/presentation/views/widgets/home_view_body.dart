@@ -39,8 +39,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16),
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 16, top: 16),
             child: Row(
               children: [
                 CircleAvatar(
@@ -58,12 +58,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.location_on_rounded,
                       size: 18,
                       color: Colors.orange,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                     Text(
@@ -73,20 +73,20 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.keyboard_arrow_down,
                       size: 18,
                       color: Colors.grey,
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
-                Text(
+                const Text(
                   ' 4102 Pretty View Lane',
                   style: TextStyle(
                     color: Colors.white,
@@ -99,7 +99,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications_none_outlined,
                 size: 30,
               ),
@@ -120,25 +120,25 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
-                    Text(
+                    const Text(
                       'Let\'s find your best \nfavorite food!',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       // White text inside TextField
                       decoration: InputDecoration(
                         hintText: 'Find for food or restaurant...',
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         // Grey hint text
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.grey, // Grey search icon
                         ),
@@ -151,8 +151,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                             Colors.grey[800], // Darker background for TextField
                       ),
                     ),
-                    SizedBox(height: 32),
-                    Row(
+                    const SizedBox(height: 32),
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         FoodCategoryCard(image: Assets.imagesPizza, label: 'Pizza'),
@@ -164,7 +164,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         FoodCategoryCard(image: Assets.imagesAsian, label: 'Asian'),
                       ],
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -177,7 +177,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                             child: AspectRatio(
                               aspectRatio: 16 / 22,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   bottomLeft: Radius.circular(10),
                                 ),
@@ -196,7 +196,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Special for you',
                                     style: TextStyle(
                                       fontSize: 14,
@@ -204,23 +204,23 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   Text(
-                                    'Fried Noodles With\nSpecial Chicken\nKatsu',
+                                    'Fried Noodles With\nSpecial Chicken\nKatsura',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black.withOpacity(0.5),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   ElevatedButton(
                                     onPressed: () {},
-                                    child: Text('Buy Now'),
                                     style: ElevatedButton.styleFrom(
                                       foregroundColor: Colors.white,
                                       backgroundColor: Colors.orange,
                                     ),
+                                    child:  const Text('Buy Now'),
                                   ),
                                 ],
                               ),
@@ -229,11 +229,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -254,14 +254,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         ),
                         TextButton(
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             'See All',
                             style: TextStyle(color: Colors.orange),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     SizedBox(
                       height: 250,
                       child: FoodCardList(),
@@ -278,7 +278,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: true,
           onTap: _onItemTapped,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
