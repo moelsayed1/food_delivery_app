@@ -169,7 +169,7 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
                   ),
                   const SizedBox(height: 16),
                   _buildAddonOption(Assets.imagesPepper, 'Pepper Julienned', '\$2.30'),
-                  _buildAddonOption(Assets.imagesBroccoli, 'Broccoli', '4.70'),
+                  _buildAddonOption(Assets.imagesBroccoli, 'Broccoli', '\$4.70'),
                   _buildAddonOption(Assets.imagesMushrooms, 'Mashroom', '\$2.50'),
                   const SizedBox(height: 16),
                 ],
@@ -182,7 +182,7 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
             right: 100,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 22),
                 backgroundColor: Colors.orange,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
