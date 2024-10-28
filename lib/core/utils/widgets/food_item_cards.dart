@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class FoodItemCard extends StatelessWidget {
-  const FoodItemCard({super.key, required this.image, required this.title, required this.description});
+  const FoodItemCard({super.key, required this.image, required this.title, required this.description, this.iconButton});
 
   final String image;
   final String title;
   final String description;
+  final IconButton? iconButton;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +34,24 @@ class FoodItemCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 4.0),
-                Text(
-                  description,
-                  style: TextStyle(fontSize: 14.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 4.0),
+                    Text(
+                      description,
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ],
                 ),
               ],
             ),

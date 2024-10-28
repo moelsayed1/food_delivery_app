@@ -5,8 +5,11 @@ import 'package:food_delivery_app/Features/authentication/otp/views/otp_view.dar
 import 'package:food_delivery_app/Features/authentication/reset_password/views/reset_password_view.dart';
 import 'package:food_delivery_app/Features/authentication/reset_successful/views/reset_successful_view.dart';
 import 'package:food_delivery_app/Features/authentication/sign_up/views/sign_up_view.dart';
+import 'package:food_delivery_app/Features/cart/presentation/views/cart_view.dart';
+import 'package:food_delivery_app/Features/favorites/views/favorite_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/food_details_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/home_view.dart';
+import 'package:food_delivery_app/Features/order/presentation/views/order_view.dart';
 import 'package:food_delivery_app/Features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -19,6 +22,9 @@ class AppRouter {
   static const String resetSuccessRoute = '/reset_success';
   static const String homeRoute = '/home';
   static const String foodDetailsRoute = '/food_details';
+  static const String ordersRoute = '/orders';
+  static const String cartRoute = '/cart';
+  static const String favoritesRoute = '/favorites';
 
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -41,6 +47,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>  const HomeView());
       case foodDetailsRoute:
         return MaterialPageRoute(builder: (_) =>  const FoodDetailsView());
+      case ordersRoute:
+        return MaterialPageRoute(builder: (_) =>  const OrderView());
+      case cartRoute:
+        return MaterialPageRoute(builder: (_) =>  const CartView());
+      case favoritesRoute:
+        return MaterialPageRoute(builder: (_) =>  const FavoriteView());
 
       default:
         return MaterialPageRoute(
