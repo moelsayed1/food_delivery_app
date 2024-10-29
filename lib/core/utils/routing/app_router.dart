@@ -10,6 +10,7 @@ import 'package:food_delivery_app/Features/favorites/views/favorite_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/food_details_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/home_view.dart';
 import 'package:food_delivery_app/Features/order/presentation/views/order_view.dart';
+import 'package:food_delivery_app/Features/profile/views/profile_view.dart';
 import 'package:food_delivery_app/Features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -25,6 +26,7 @@ class AppRouter {
   static const String ordersRoute = '/orders';
   static const String cartRoute = '/cart';
   static const String favoritesRoute = '/favorites';
+  static const String profileRoute = '/profile';
 
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -53,7 +55,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>  const CartView());
       case favoritesRoute:
         return MaterialPageRoute(builder: (_) =>  const FavoriteView());
-
+      case profileRoute:
+        return MaterialPageRoute(builder: (_) =>  const ProfileView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

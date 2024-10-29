@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/Features/cart/presentation/views/cart_view.dart';
 import 'package:food_delivery_app/Features/favorites/views/favorite_view.dart';
 import 'package:food_delivery_app/Features/home/presentation/views/widgets/build_home_view_body.dart';
+import 'package:food_delivery_app/Features/profile/views/profile_view.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -47,6 +48,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             BuildHomeViewBody(),
             FavoriteView(),
             CartView(),
+            ProfileView(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
