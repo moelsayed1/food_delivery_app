@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
+import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/generated/assets.dart';
 
 class FoodDetailsViewBody extends StatefulWidget {
@@ -189,7 +190,7 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
                 ),
               ),
               onPressed: () {
-                // Handle Add to Cart action
+                Navigator.pushNamed(context, AppRouter.cartRoute);
               },
               child: const Text(
                 'Add Cart',
