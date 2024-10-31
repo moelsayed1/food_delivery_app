@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
@@ -7,6 +9,7 @@ import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/core/utils/themes/app_theme.dart';
 import 'package:food_delivery_app/core/utils/widgets/show_snack_bar.dart';
 import 'package:food_delivery_app/generated/assets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -64,7 +67,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     onChanged: (value) {
                       setState(() {
                         email = value;
-                        print('$email');
+                        log('$email');
                       });
                     },
                     hintText: 'Enter Your Email',
@@ -86,7 +89,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     onChanged: (value) {
                       setState(() {
                         password = value;
-                        print('$password');
+                        log('$password');
                       });
                     },
                     controller: passwordController,
@@ -141,7 +144,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             try {
                               UserCredential user = await signInUser();
                               Navigator.pushNamed(context, AppRouter.homeRoute);
-                              print(user.user!.uid);
+                              log(user.user!.uid);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
                                 buildShowSnackBar(context, 'Wrong password provided for that user.');
@@ -149,7 +152,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                                 buildShowSnackBar(context, 'No user found for that email.');
                               }
                             } catch (e) {
-                              print(e);
+                              log(e.toString());
                             }
                             isLoading = false;
                             setState(() {});
@@ -249,7 +252,27 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           height: 50,
                           width: 160,
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () async {
+                              setState(() {  // Start loading indicator
+                                isLoading = true;
+                              });
+                              try {
+                                UserCredential? userCredential = await signInWithGoogle();
+                                if (userCredential != null) {
+                                  log("Google sign-in successful!");
+                                  Navigator.pushNamed(context, AppRouter.homeRoute);
+                                } else {
+                                  buildShowSnackBar(context, 'Google sign-in failed or canceled.'); // More descriptive message
+                                }
+                              } catch (e) {
+                                log("Google Sign-In Error: $e");
+                                buildShowSnackBar(context, 'An error occurred during Google sign-in.');
+                              } finally {  // Ensure loading indicator is stopped
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
@@ -276,6 +299,24 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         ),
       ),
     );
+  }
+
+  Future<UserCredential?> signInWithGoogle() async { // Make it return nullable UserCredential
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return null; // User canceled sign-in
+      }
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      log("Google Sign-In Error: $e");
+      return null;
+    }
   }
   Future<UserCredential> signInUser() async {
     UserCredential user =

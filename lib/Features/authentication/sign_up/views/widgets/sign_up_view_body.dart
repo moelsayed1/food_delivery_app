@@ -7,6 +7,7 @@ import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/core/utils/themes/app_theme.dart';
 import 'package:food_delivery_app/core/utils/widgets/show_snack_bar.dart';
 import 'package:food_delivery_app/generated/assets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUpViewBody extends StatefulWidget {
@@ -143,9 +144,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                               print(user.user!.uid);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'weak-password') {
-                                buildShowSnackBar(context, 'This password is too week.');
+                                buildShowSnackBar(
+                                    context, 'This password is too week.');
                               } else if (e.code == 'email-already-in-use') {
-                                buildShowSnackBar(context, 'This account already exists for that email.');
+                                buildShowSnackBar(context,
+                                    'This account already exists for that email.');
                               }
                             } catch (e) {
                               print(e);
@@ -248,7 +251,27 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                           height: 50,
                           width: 160,
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () async {
+                              setState(() {  // Start loading indicator
+                                isLoading = true;
+                              });
+                              try {
+                                UserCredential? userCredential = await signInWithGoogle();
+                                if (userCredential != null) {
+                                  print("Google sign-in successful!");
+                                  Navigator.pushNamed(context, AppRouter.homeRoute);
+                                } else {
+                                  buildShowSnackBar(context, 'Google sign-in failed or canceled.'); // More descriptive message
+                                }
+                              } catch (e) {
+                                print("Google Sign-In Error: $e");
+                                buildShowSnackBar(context, 'An error occurred during Google sign-in.');
+                              } finally {  // Ensure loading indicator is stopped
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
@@ -277,9 +300,27 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     );
   }
 
+  Future<UserCredential?> signInWithGoogle() async { // Make it return nullable UserCredential
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return null; // User canceled sign-in
+      }
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      print("Google Sign-In Error: $e");
+      return null;
+    }
+  }
+
   Future<UserCredential> registerUser() async {
     UserCredential user =
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: emailController.text,
       password: passwordController.text,
     );
