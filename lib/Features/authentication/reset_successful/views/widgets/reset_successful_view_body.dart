@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
 import 'package:food_delivery_app/core/utils/custom_elevated_button/custom_elevated_button.dart';
 import 'package:food_delivery_app/core/utils/routing/app_router.dart';
 import 'package:food_delivery_app/core/utils/themes/app_theme.dart';
+import 'package:flutter/widgets.dart';
 
 class ResetSuccessfulViewBody extends StatelessWidget {
   const ResetSuccessfulViewBody({super.key});
@@ -19,11 +21,11 @@ class ResetSuccessfulViewBody extends StatelessWidget {
               height: 100,
             ),
             CircleAvatar(
-              radius: 60,
+              radius: 60.r,
               backgroundColor: AppTheme.darkTheme.primaryColor.withOpacity(0.2),
-              child: const Icon(
+              child:  Icon(
                 Icons.check,
-                size: 60,
+                size: 60.r,
               ),
             ),
             const SizedBox(
