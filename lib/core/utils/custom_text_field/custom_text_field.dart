@@ -9,24 +9,30 @@ class CustomTextField extends StatelessWidget {
     required this.labelText,
     this.keyboardType = TextInputType.text,
     this.obsecureText = false,
-    this.validator,
     this.suffixIcon,
+    this.onChanged,
   });
 
   final TextEditingController controller;
   final TextInputType keyboardType;
-  final String? Function(String?)? validator;
   final String? hintText;
   final String labelText;
   final bool obsecureText;
   final Widget? suffixIcon;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       controller: controller,
       obscureText: obsecureText,
-      validator: validator,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Please fill this field';
+        }
+        return null;
+      },
       keyboardType: keyboardType,
       decoration: InputDecoration(
         labelText: labelText,
