@@ -276,6 +276,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       ),
     );
   }
+
   Future<UserCredential> registerUser() async {
     UserCredential user =
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
