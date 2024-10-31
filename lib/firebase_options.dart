@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCZwvBTInoJ7paEs8BdImOrFLYXOLkdUBM',
-    appId: '1:1053462322225:android:ad420141978a5419120910',
+    appId: '1:1053462322225:android:fe122d5e9c22fd8f120910',
     messagingSenderId: '1053462322225',
     projectId: 'food-app-4f344',
     storageBucket: 'food-app-4f344.appspot.com',
@@ -64,6 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1053462322225',
     projectId: 'food-app-4f344',
     storageBucket: 'food-app-4f344.appspot.com',
+    androidClientId: '1053462322225-73cvoob8a9q5jebdu3c6h7h2hp1fph41.apps.googleusercontent.com',
     iosClientId: '1053462322225-70uagecs745lohjeqqit1oe3b92bojsn.apps.googleusercontent.com',
     iosBundleId: 'com.example.foodDeliveryApp',
   );
@@ -74,6 +75,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1053462322225',
     projectId: 'food-app-4f344',
     storageBucket: 'food-app-4f344.appspot.com',
+    androidClientId: '1053462322225-73cvoob8a9q5jebdu3c6h7h2hp1fph41.apps.googleusercontent.com',
     iosClientId: '1053462322225-70uagecs745lohjeqqit1oe3b92bojsn.apps.googleusercontent.com',
     iosBundleId: 'com.example.foodDeliveryApp',
   );
