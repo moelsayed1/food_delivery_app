@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.obsecureText = false,
     this.suffixIcon,
     this.onChanged,
+    this.validator,
   });
 
   final TextEditingController controller;
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   final bool obsecureText;
   final Widget? suffixIcon;
   final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,7 @@ class CustomTextField extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       obscureText: obsecureText,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Please fill this field';
-        }
-        return null;
-      },
+      validator: validator,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         labelText: labelText,
