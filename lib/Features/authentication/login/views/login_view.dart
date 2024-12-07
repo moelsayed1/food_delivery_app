@@ -29,13 +29,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
           ),
-          child: LoginViewBody(
-            onLoadingChanged: (bool loading) {
-              setState(() {
-                isLoading = loading;
-              });
-            },
-          ),
+          child: const LoginViewBody(),
         ),
       ),
     );
