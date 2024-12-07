@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:food_delivery_app/core/utils/app_bar_icons/app_bar_icons.dart';
 import 'package:food_delivery_app/core/utils/custom_elevated_button/custom_elevated_button.dart';
 import 'package:food_delivery_app/core/utils/custom_text_field/custom_text_field.dart';
@@ -8,10 +11,11 @@ import 'package:food_delivery_app/core/utils/themes/app_theme.dart';
 import 'package:food_delivery_app/core/utils/widgets/show_snack_bar.dart';
 import 'package:food_delivery_app/generated/assets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUpViewBody extends StatefulWidget {
-  const SignUpViewBody({super.key});
+  const SignUpViewBody({super.key, required this.onLoadingChanged});
+
+  final Function(bool) onLoadingChanged;
 
   @override
   State<SignUpViewBody> createState() => _SignUpViewBodyState();
@@ -36,15 +40,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: isLoading,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Form(
-            key: formKey,
-            child: SafeArea(
-              child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Form(
+        key: formKey,
+        child: SafeArea(
+          child: ListView(
+            children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const AppBarIcons(),
@@ -62,10 +65,16 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     height: 30,
                   ),
                   CustomTextField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter this field';
+                      }
+                      return null;
+                    },
                     onChanged: (value) {
                       setState(() {
                         name = value;
-                        print('$name');
+                        log(name);
                       });
                     },
                     hintText: 'Enter Your Full Name',
@@ -77,10 +86,16 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     height: 20,
                   ),
                   CustomTextField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter this field';
+                      }
+                      return null;
+                    },
                     onChanged: (value) {
                       setState(() {
                         email = value;
-                        print('$email');
+                        log(email);
                       });
                     },
                     hintText: 'Enter Your Email',
@@ -102,7 +117,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     onChanged: (value) {
                       setState(() {
                         password = value;
-                        print('$password');
+                        log(password);
                       });
                     },
                     controller: passwordController,
@@ -116,7 +131,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       labelText: 'Password',
                       suffixIcon: IconButton(
                         icon: Icon(
-                          obscureText ? Icons.visibility : Icons.visibility_off,
+                          obscureText ? Icons.visibility_off : Icons.visibility,
                         ),
                         onPressed: () {
                           setState(() {
@@ -151,7 +166,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                                     'This account already exists for that email.');
                               }
                             } catch (e) {
-                              print(e);
+                              log(e.toString());
                             }
                             isLoading = false;
                             setState(() {});
@@ -231,7 +246,34 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                           height: 50,
                           width: 160,
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: ()  async {
+                              widget.onLoadingChanged(true);
+                              try {
+                                await signUpOrSignInWithFacebook(onLoadingChanged: (isLoading) {
+                                  setState(() {
+                                    this.isLoading = isLoading; // Update your loading state variable
+                                  });
+                                }).then((userCredential) {
+                                  if (userCredential != null) {
+
+                                    // credential of the user is the same as userCredential navigate to the next screen
+                                    // Navigate to the next screen or update UI
+                                    Navigator.pushNamed(
+                                        context, AppRouter.homeRoute);
+                                  } else {
+                                    // Handle login/sign-up failure (e.g., show an error message)
+                                    buildShowSnackBar(context,
+                                        'Facebook sign-in failed or canceled.');
+                                  }
+                                  return null;
+                                });
+                              } catch (e) {
+                                log("Facebook Sign-In Error: $e");
+                                buildShowSnackBar(
+                                    context, 'Facebook sign-in error.');
+                              } finally {
+                                widget.onLoadingChanged(false);
+                              }},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xff1877F2),
                             ),
@@ -258,13 +300,13 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                               try {
                                 UserCredential? userCredential = await signInWithGoogle();
                                 if (userCredential != null) {
-                                  print("Google sign-in successful!");
+                                  log("Google sign-in successful!");
                                   Navigator.pushNamed(context, AppRouter.homeRoute);
                                 } else {
                                   buildShowSnackBar(context, 'Google sign-in failed or canceled.'); // More descriptive message
                                 }
                               } catch (e) {
-                                print("Google Sign-In Error: $e");
+                                log("Google Sign-In Error: $e");
                                 buildShowSnackBar(context, 'An error occurred during Google sign-in.');
                               } finally {  // Ensure loading indicator is stopped
                                 setState(() {
@@ -293,11 +335,51 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   ),
                 ],
               ),
-            ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Future<UserCredential?> signUpOrSignInWithFacebook({
+    required Function(bool) onLoadingChanged, // For loading state
+  }) async {
+    try {
+      onLoadingChanged(true); // Indicate loading start
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+      onLoadingChanged(false); // Loading complete (regardless of success)
+
+      if (loginResult.status == LoginStatus.success &&
+          loginResult.accessToken != null) {
+        final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+        try {
+          final userCredential = await FirebaseAuth.instance
+              .signInWithCredential(facebookAuthCredential);
+          // Success: userCredential now contains the User object
+          return userCredential;
+        } on FirebaseAuthException catch (e) {
+          // Handle Firebase-specific errors during sign-in/sign-up
+          log("Firebase error during Facebook auth: ${e.code} - ${e.message}");
+          // Example: Show a specific error message based on e.code
+          return null; // Or rethrow the error if you want
+        }
+      } else if (loginResult.status == LoginStatus.cancelled) {
+        // Handle user cancellation
+        log("Facebook login cancelled by the user.");
+        return null;
+      } else {
+        // Handle other login failures
+        log("Facebook login failed: ${loginResult.message}");
+        return null;
+      }
+    } catch (e) {
+      onLoadingChanged(false);
+      log("Unexpected error during Facebook login: $e");
+      return null;
+    }
   }
 
   Future<UserCredential?> signInWithGoogle() async { // Make it return nullable UserCredential
