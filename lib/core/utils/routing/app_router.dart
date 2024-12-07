@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/Features/authentication/forget/views/forget_password_view.dart';
+import 'package:food_delivery_app/Features/authentication/forget/presentation/views/forget_password_view.dart';
 import 'package:food_delivery_app/Features/authentication/login/views/login_view.dart';
 import 'package:food_delivery_app/Features/authentication/otp/views/otp_view.dart';
 import 'package:food_delivery_app/Features/authentication/reset_password/views/reset_password_view.dart';
