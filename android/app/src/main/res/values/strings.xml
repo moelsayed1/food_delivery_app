@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <!-- App Name -->
+        <string name="app_name">Food Delivery App</string>
+
+        <!-- Facebook App ID -->
+        <string name="facebook_app_id">1252735209097037</string>
+
+        <!-- Facebook Login Protocol Scheme -->
+        <string name="fb_login_protocol_scheme">fb1252735209097037</string>
+
+        <!-- Facebook Client Token -->
+        <string name="facebook_client_token">3a6a534974b4703a6491fca17131d5d4</string>
+
+</resources>
