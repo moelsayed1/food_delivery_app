@@ -30,5 +30,4 @@ class Assets {
   static const String imagesPizza2 = 'assets/images/pizza2.jpg';
   static const String imagesProfile = 'assets/images/profile.jpg';
   static const String imagesResetPassword = 'assets/images/reset password.webp';
-
 }
