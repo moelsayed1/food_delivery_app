@@ -43,7 +43,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const AppBarIcons(),
-                        SizedBox(height: 100.h),
+                        SizedBox(height: 80.h),
                         const LoginTitle(),
                         SizedBox(height: 30.h),
                         LoginTextFields(
@@ -52,7 +52,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           obscureText: context.watch<LoginCubit>().obscureText, // Access from Cubit
                           onObscureTextPressed: context.read<LoginCubit>().toggleObscureText,
                         ),
-                        SizedBox(height: 35.h),
+                        SizedBox(height: 25.h),
                         Center(
                           child: TextButton(
                             onPressed: () {
@@ -64,7 +64,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 35.h),
+                        SizedBox(height: 20.h),
                         if (state is LoginLoading)
                           const Center(
                             child: CircularProgressIndicator(),
@@ -72,7 +72,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         else LoginButton(
                         onPressed: () => context.read<LoginCubit>().loginUser(),
                         ),
-                        SizedBox(height: 35.h),
+                        SizedBox(height: 25.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -88,7 +88,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 35.h),
+                        SizedBox(height: 25.h),
                         Row(
                           children: [
                             Expanded(child: Divider(thickness: 1, color: Colors.white.withOpacity(0.5))),
@@ -99,7 +99,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             Expanded(child: Divider(thickness: 1, color: Colors.white.withOpacity(0.5))),
                           ],
                         ),
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 35.h),
                         const LoginSocialMediaButtons(),
                       ],
                     ),
