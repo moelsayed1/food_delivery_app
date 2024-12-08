@@ -7,12 +7,12 @@ class ResetPasswordTextFields extends StatelessWidget {
   final bool obscureText;
   final VoidCallback toggleObscureText;
 
-
-
   const ResetPasswordTextFields({
     super.key,
     required this.newPasswordController,
-    required this.confirmPasswordController, required this.obscureText, required this.toggleObscureText,
+    required this.confirmPasswordController,
+    required this.obscureText,
+    required this.toggleObscureText,
   });
 
   @override
